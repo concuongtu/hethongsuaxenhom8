@@ -1,0 +1,163 @@
+/* ============================================================
+   1. CẤU HÌNH CHUNG & BIẾN
+   ============================================================ */
+:root {
+    --primary-red: #ff0000;
+    --dark-red: #800000;
+    --bg-black: #0d0d0d;
+    --input-bg: #1a1a1a;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.register-page {
+    background-color: var(--bg-black);
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.Oswald-font {
+    font-family: 'Oswald', sans-serif;
+}
+
+/* ============================================================
+   2. BỐ CỤC SPLIT SCREEN (CHIA ĐÔI MÀN HÌNH)
+   ============================================================ */
+.split-screen {
+    display: flex;
+    height: 100vh;
+}
+
+/* Bên trái: Ảnh nền và Slogan */
+.left-side {
+    flex: 1;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+/* Bên phải: Form đăng ký */
+.right-side {
+    width: 450px;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    position: relative;
+    border-left: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ============================================================
+   3. CÁC THÀNH PHẦN CHI TIẾT
+   ============================================================ */
+
+/* Nút quay lại */
+.back-home {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+.back-home:hover {
+    color: var(--primary-red);
+}
+
+/* Header của form */
+.reg-header h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+/* Input Styles */
+.form-group-custom {
+    margin-bottom: 25px;
+}
+
+.form-group-custom label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.input-style {
+    width: 100%;
+    background: var(--input-bg);
+    border: 1px solid #333;
+    padding: 15px;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.input-style:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.1);
+}
+
+/* Nút xác nhận vát chéo giống nút Đăng ký ở Trang chủ */
+.btn-reg-full {
+    width: 100%;
+    background: var(--dark-red);
+    color: #fff;
+    padding: 16px;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: var(--transition);
+    /* Giữ phong cách vát chéo đặc trưng */
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+.btn-reg-full:hover {
+    background: var(--primary-red);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+}
+
+/* ============================================================
+   4. RESPONSIVE (ĐIỆN THOẠI)
+   ============================================================ */
+@media (max-width: 992px) {
+    .left-side {
+        display: none; /* Ẩn bên trái khi màn hình nhỏ */
+    }
+    .right-side {
+        width: 100%;
+        padding: 40px 20px;
+    }
+    .back-home {
+        top: 20px;
+        left: 20px;
+    }
+}

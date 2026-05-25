@@ -1,0 +1,380 @@
+/* ============================================================
+   1. BIẾN TOÀN CỤC & CẤU HÌNH CHUNG
+   ============================================================ */
+:root {
+    --primary-red: #ff0000;      /* Đỏ chủ đạo */
+    --dark-red: #800000;         /* Đỏ đậm cho nút */
+    --accent-yellow: #FFC107;    /* Vàng điểm nhấn */
+    --bg-black: #0d0d0d;         /* Màu nền đen xám */
+    --card-bg: #1a1a1a;          /* Màu nền của các thẻ card */
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+body { 
+    background: #000; 
+    color: #fff; 
+    font-family: 'Inter', sans-serif; 
+    line-height: 1.6; 
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, .navbar-brand { 
+    font-family: 'Oswald', sans-serif; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+
+/* ============================================================
+   2. THANH ĐIỀU HƯỚNG (NAVBAR) & NÚT ĐĂNG KÝ
+   ============================================================ */
+.navbar {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px dashed #333;
+}
+
+.nav-link {
+    font-size: 14px;
+    text-transform: uppercase;
+    position: relative;
+    transition: var(--transition);
+}
+
+/* Hiệu ứng gạch chân khi hover menu */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--primary-red);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link:hover, .nav-link.active { color: var(--primary-red) !important; }
+
+/* NÚT ĐĂNG KÝ VÁT CHÉO - CHUẨN FORM ẢNH */
+.btn-reg { 
+    background: var(--dark-red) !important; 
+    color: #fff !important; 
+    padding: 10px 30px !important; 
+    border: none !important; 
+    font-weight: bold; 
+    font-family: 'Oswald', sans-serif;
+    /* Góc vát chuẩn */
+    clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%); 
+    cursor: pointer; 
+    transition: var(--transition);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-reg:hover { 
+    background: var(--primary-red) !important; 
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    position: relative;
+    padding: 60px 0;
+    background: radial-gradient(circle at 10% 20%, rgba(217, 4, 41, 0.05) 0%, transparent 50%);
+}
+
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 15vw;
+    font-family: 'Oswald';
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.02);
+    pointer-events: none;
+}
+
+.text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary-red);
+}
+
+.btn-skew {
+    display: inline-block;
+    background: var(--primary-red);
+    color: #fff;
+    padding: 14px 35px;
+    text-decoration: none;
+    font-family: 'Oswald';
+    font-weight: bold;
+    transform: skew(-15deg);
+    transition: var(--transition);
+}
+
+.btn-skew span {
+    display: block;
+    transform: skew(15deg);
+}
+
+.btn-skew:hover {
+    background: #fff;
+    color: var(--primary-red);
+    transform: skew(-15deg) translateY(-3px);
+}
+
+.hero-img-frame {
+    transform: skew(-5deg);
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-img-frame img { transform: skew(5deg) scale(1.1); }
+
+/* --- STATS --- */
+.stats-box {
+    background: var(--dark-card);
+    padding: 40px 0;
+    border-top: 1px solid rgba(217, 4, 41, 0.1);
+    border-bottom: 1px solid rgba(217, 4, 41, 0.1);
+}
+
+/* --- SERVICES --- */
+.service-card {
+    background: var(--dark-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.03);
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-red);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.service-img {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-img img {
+    transform: scale(1.1);
+}
+
+.service-icon-overlay {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    background: var(--primary-red);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(217, 4, 41, 0.4);
+}
+
+.service-card:hover .service-icon-overlay {
+    transform: rotateY(360deg);
+    transition: 0.6s ease;
+}
+
+.service-content {
+    padding: 25px;
+}
+
+.service-content h5 {
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* --- EXPERTS --- */
+.expert-card {
+    position: relative;
+    background: var(--dark-card);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    transition: var(--transition);
+}
+
+.expert-img {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+}
+
+.expert-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: var(--transition);
+}
+
+.expert-card:hover .expert-img img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.expert-label {
+    position: absolute;
+    bottom: -15px;
+    left: 5%;
+    width: 90%;
+    background: #1a1a1a;
+    padding: 15px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 3px solid var(--primary-red);
+    border-radius: 4px;
+    text-align: center;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.expert-label h5 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.expert-label p {
+    font-size: 0.75rem;
+    color: #888;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.expert-card:hover .expert-label {
+    transform: translateY(-5px);
+    background: #222;
+    border-color: var(--primary-red);
+}
+
+/* --- WHY CHOOSE US --- */
+.why-img-box {
+    position: relative;
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: -15px;
+    left: 15px;
+    background: var(--primary-red);
+    padding: 15px 25px;
+    transform: skew(-10deg);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.experience-badge .num {
+    display: block;
+    font-size: 2.2rem;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.experience-badge .txt {
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+/* --- TESTIMONIALS --- */
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    border-color: var(--primary-red);
+    background: rgba(217, 4, 41, 0.05);
+}
+
+/* --- FOOTER --- */
+footer {
+    background: #050505;
+    border-top: 1px solid #1a1a1a;
+}
+
+.hover-red:hover {
+    color: var(--primary-red) !important;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 991px) {
+    .hero { text-align: center; }
+    .hero-img-frame { margin-top: 40px; transform: none; }
+    .hero-img-frame img { transform: none; }
+    .watermark { display: none; }
+    .expert-label { padding: 10px 5px; }
+}
+
+@media (max-width: 768px) {
+    .expert-label h5 { font-size: 0.9rem; }
+    .expert-label p { font-size: 0.65rem; }
+}
+
+/*ảnh chạy*/
+.hero-img{
+    transform: translateX(60px);
+}
+
+.hero-img img{
+    height: 520px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+#carouselExample{
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+/* ===== RESPONSIVE CHO SLIDER ===== */
+
+@media (max-width: 768px){
+
+    .hero-img{
+        transform: translateX(0);
+        width: 100%;
+        margin-top: 25px;
+    }
+
+    #carouselExample{
+        width: 100%;
+        border-radius: 18px;
+    }
+
+    .hero-img img{
+        height: 260px;
+        object-fit: cover;
+        border-radius: 18px;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon{
+        width: 20px;
+        height: 20px;
+    }
+}
